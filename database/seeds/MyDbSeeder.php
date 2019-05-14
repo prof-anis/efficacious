@@ -9,9 +9,11 @@ class MyDbSeeder extends Seeder
 	protected $count=[
 
 		"user"=>10,
-		"product"=>10,
-		"category"=>10,
-		"seller"=>20,
+		"product"=>2,
+		"category"=>5,
+		"seller"=>10,
+        "blog"=>3,
+        "blogCategory"=>5
 
 
 
@@ -27,7 +29,9 @@ class MyDbSeeder extends Seeder
         //
          $this->category();
           $this->ordinaryUser();
+           $this->blogCategory();
         $this->userSellers();
+       
        
        
       
@@ -67,6 +71,13 @@ class MyDbSeeder extends Seeder
     protected function ordinaryUser()
     {
     	factory(App\User::class,$this->count['user'])->create(['role'=>'normal']);
+    }
+
+    protected function blogCategory()
+    {
+       $cats = factory(App\BlogCategory::class,$this->count['blogCategory'])->create()->each(function($cat){
+           $blogs= factory(App\Blog::class,3)->create(['blog_category_id'=>$cat->id]);
+        });
     }
 
    

@@ -18,6 +18,8 @@ class RouteServiceProvider extends ServiceProvider
 
     protected $apiNamespace='App\Http\Controllers\Api';
 
+    protected $blogNamespace = 'App\Http\Controllers\Blog';
+
     /**
      * Define your route model bindings, pattern filters, etc.
      *
@@ -40,6 +42,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
+
+        $this->mapBlogRoutes();
 
         //
     }
@@ -71,5 +75,13 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('api')
              ->namespace($this->apiNamespace)
              ->group(base_path('routes/api.php'));
+    }
+
+     protected function mapBlogRoutes()
+    {
+        Route::prefix('blog')
+             ->middleware('web')
+             ->namespace($this->blogNamespace)
+             ->group(base_path('routes/blog.php'));
     }
 }

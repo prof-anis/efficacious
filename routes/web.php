@@ -54,6 +54,9 @@ Route::get('/cart/checkout','ProductController@checkout')->name('cart.checkout')
 Route::get('/seller/products','SellerController@products')->name('seller.product');
 Route::get('/seller/products/add','SellerController@showAddProduct')->name('seller.product.show');
 Route::post('/seller/products/add','SellerController@addProduct')->name('seller.product.store');
+Route::get('/seller/products/{id}','SellerController@showEditProduct')->name('seller.product.edit');
+Route::post('/seller/product/{id}/update','SellerController@updateProduct')->name('seller.product.update');
+Route::get('/seller/orders','SellerController@orders')->name('seller.orders');
 //business route
 
 Route::post('/business/store','SellerController@addBusiness')->name('seller.business.add');

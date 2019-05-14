@@ -66,5 +66,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Reaction');
     }
 
+    public function blog()
+    {
+        return $this->hasMany('App\Blog');
+    }
+
 
 }

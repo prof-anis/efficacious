@@ -190,12 +190,14 @@ Home
             <div class="row">
                 <div class="col-md-12 no0-padding">
                     <div class="featured-product-slider prod-slider1">
+
+                        @foreach($trendings as $trending)
                         <div class="featured__single-slider">
                             <div class="featured__preview-img">
-                                <img src="{{ asset('default/images/featprod.jpg')}}" alt="Featured products">
+                                <img src="{{ $trending->image_url}}" alt="Featured products">
                                 <div class="prod_btn">
-                                    <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                    <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
+                                   
+                                    <a href="{{route('product.show',['id'=>$trending->id])}}" class="transparent btn--sm btn--round">view</a>
                                 </div>
                             </div>
                             <!-- end /.featured__preview-img -->
@@ -203,13 +205,13 @@ Home
                             <div class="featured__product-description">
                                 <div class="product-desc desc--featured">
                                     <a href="single-product.html" class="product_title">
-                                        <h4>Rida - vCard, Portfolio / Resume Template</h4>
+                                        <h4>{{$trending->name}}</h4>
                                     </a>
                                     <ul class="titlebtm">
                                         <li>
                                             <img class="auth-img" src="{{ asset('default/images/auth.jpg')}}" alt="author image">
                                             <p>
-                                                <a href="#">AazzTech</a>
+                                                <a href="#">{{ $trending->user->first_name,$trending->user->last_name }}</a>
                                             </p>
                                         </li>
                                         <li class="product_cat">
@@ -219,9 +221,7 @@ Home
                                     </ul>
                                     <!-- end /.titlebtm -->
 
-                                    <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the
-                                        mattis, leo quam aliquet congue placerat mi id nisi interdum mollis. Praesent pharetra,
-                                        justo ut scelerisque the mattis, leo quam aliquet congue justo ut scelerisque.</p>
+                                    <p>{{$trending->description}}</p>
                                 </div>
                                 <!-- end /.product-desc -->
 
@@ -242,14 +242,14 @@ Home
                                     <!-- end /.tags -->
                                     <div class="product-purchase featured--product-purchase">
                                         <div class="price_love">
-                                            <span>$10 - $50</span>
+                                            <span>${{$trending->amount}}</span>
                                             <p>
-                                                <span class="lnr lnr-heart"></span> 90</p>
+                                                <span class="lnr lnr-heart"></span> {{count($trending->reaction) }}</p>
                                         </div>
                                         <div class="sell">
                                             <p>
                                                 <span class="lnr lnr-cart"></span>
-                                                <span>16</span>
+                                                <span>{{ count($trending->cart) }}</span>
                                             </p>
                                         </div>
 
@@ -278,277 +278,10 @@ Home
                             </div>
                             <!-- end /.featured__product-description -->
                         </div>
+                        @endforeach
                         <!--end /.featured__single-slider-->
 
-                        <div class="featured__single-slider">
-                            <div class="featured__preview-img">
-                                <img src="{{ asset('default/images/featprod.jpg')}}" alt="Featured products">
-                                <div class="prod_btn">
-                                    <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                    <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
-                                </div>
-                            </div>
-                            <!-- end /.featured__preview-img -->
-
-                            <div class="featured__product-description">
-                                <div class="product-desc desc--featured">
-                                    <a href="single-product.html" class="product_title">
-                                        <h4>One Page Resume Template</h4>
-                                    </a>
-                                    <ul class="titlebtm">
-                                        <li>
-                                            <img class="auth-img" src="{{ asset('default/images/auth.jpg')}}" alt="author image">
-                                            <p>
-                                                <a href="#">AazzTech</a>
-                                            </p>
-                                        </li>
-                                        <li class="product_cat">
-                                            <a href="#">
-                                                <span class="lnr lnr-book"></span> WordPress</a>
-                                        </li>
-                                    </ul>
-                                    <!-- end /.titlebtm -->
-
-                                    <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the
-                                        mattis, leo quam aliquet congue placerat mi id nisi interdum mollis. Praesent pharetra,
-                                        justo ut scelerisque the mattis, leo quam aliquet congue justo ut scelerisque.</p>
-                                </div>
-                                <!-- end /.product-desc -->
-
-                                <div class="product_data">
-                                    <div class="tags tags--round">
-                                        <ul>
-                                            <li>
-                                                <a href="#">website</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">plugin</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">landing page</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <!-- end /.tags -->
-                                    <div class="product-purchase featured--product-purchase">
-                                        <div class="price_love">
-                                            <span>$10 - $50</span>
-                                            <p>
-                                                <span class="lnr lnr-heart"></span> 90</p>
-                                        </div>
-                                        <div class="sell">
-                                            <p>
-                                                <span class="lnr lnr-cart"></span>
-                                                <span>16</span>
-                                            </p>
-                                        </div>
-
-                                        <div class="rating product--rating">
-                                            <ul>
-                                                <li>
-                                                    <span class="fa fa-star"></span>
-                                                </li>
-                                                <li>
-                                                    <span class="fa fa-star"></span>
-                                                </li>
-                                                <li>
-                                                    <span class="fa fa-star"></span>
-                                                </li>
-                                                <li>
-                                                    <span class="fa fa-star"></span>
-                                                </li>
-                                                <li>
-                                                    <span class="fa fa-star"></span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- end /.product-purchase -->
-                                </div>
-                            </div>
-                            <!-- end /.featured__product-description -->
-                        </div>
-                        <!--end /.featured__single-slider-->
-
-                        <div class="featured__single-slider">
-                            <div class="featured__preview-img">
-                                <img src="{{ asset('default/images/featprod.jpg')}}" alt="Featured products">
-                                <div class="prod_btn">
-                                    <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                    <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
-                                </div>
-                            </div>
-                            <!-- end /.featured__preview-img -->
-
-                            <div class="featured__product-description">
-                                <div class="product-desc desc--featured">
-                                    <a href="single-product.html" class="product_title">
-                                        <h4>AppsPress App Landing</h4>
-                                    </a>
-                                    <ul class="titlebtm">
-                                        <li>
-                                            <img class="auth-img" src="{{ asset('default/images/auth.jpg')}}" alt="author image">
-                                            <p>
-                                                <a href="#">AazzTech</a>
-                                            </p>
-                                        </li>
-                                        <li class="product_cat">
-                                            <a href="#">
-                                                <span class="lnr lnr-book"></span> WordPress</a>
-                                        </li>
-                                    </ul>
-                                    <!-- end /.titlebtm -->
-
-                                    <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the
-                                        mattis, leo quam aliquet congue placerat mi id nisi interdum mollis. Praesent pharetra,
-                                        justo ut scelerisque the mattis, leo quam aliquet congue justo ut scelerisque.</p>
-                                </div>
-                                <!-- end /.product-desc -->
-
-                                <div class="product_data">
-                                    <div class="tags tags--round">
-                                        <ul>
-                                            <li>
-                                                <a href="#">website</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">plugin</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">landing page</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <!-- end /.tags -->
-                                    <div class="product-purchase featured--product-purchase">
-                                        <div class="price_love">
-                                            <span>$10 - $50</span>
-                                            <p>
-                                                <span class="lnr lnr-heart"></span> 90</p>
-                                        </div>
-                                        <div class="sell">
-                                            <p>
-                                                <span class="lnr lnr-cart"></span>
-                                                <span>16</span>
-                                            </p>
-                                        </div>
-
-                                        <div class="rating product--rating">
-                                            <ul>
-                                                <li>
-                                                    <span class="fa fa-star"></span>
-                                                </li>
-                                                <li>
-                                                    <span class="fa fa-star"></span>
-                                                </li>
-                                                <li>
-                                                    <span class="fa fa-star"></span>
-                                                </li>
-                                                <li>
-                                                    <span class="fa fa-star"></span>
-                                                </li>
-                                                <li>
-                                                    <span class="fa fa-star"></span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- end /.product-purchase -->
-                                </div>
-                            </div>
-                            <!-- end /.featured__product-description -->
-                        </div>
-                        <!--end /.featured__single-slider-->
-
-                        <div class="featured__single-slider">
-                            <div class="featured__preview-img">
-                                <img src="{{ asset('default/images/featprod.jpg')}}" alt="Featured products">
-                                <div class="prod_btn">
-                                    <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                                    <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
-                                </div>
-                            </div>
-                            <!-- end /.featured__preview-img -->
-
-                            <div class="featured__product-description">
-                                <div class="product-desc desc--featured">
-                                    <a href="single-product.html" class="product_title">
-                                        <h4>MartPlace - Digital Marketplace</h4>
-                                    </a>
-                                    <ul class="titlebtm">
-                                        <li>
-                                            <img class="auth-img" src="{{ asset('default/images/auth.jpg')}}" alt="author image">
-                                            <p>
-                                                <a href="#">AazzTech</a>
-                                            </p>
-                                        </li>
-                                        <li class="product_cat">
-                                            <a href="#">
-                                                <span class="lnr lnr-book"></span> WordPress</a>
-                                        </li>
-                                    </ul>
-                                    <!-- end /.titlebtm -->
-
-                                    <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the
-                                        mattis, leo quam aliquet congue placerat mi id nisi interdum mollis. Praesent pharetra,
-                                        justo ut scelerisque the mattis, leo quam aliquet congue justo ut scelerisque.</p>
-                                </div>
-                                <!-- end /.product-desc -->
-
-                                <div class="product_data">
-                                    <div class="tags tags--round">
-                                        <ul>
-                                            <li>
-                                                <a href="#">website</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">plugin</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">landing page</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <!-- end /.tags -->
-                                    <div class="product-purchase featured--product-purchase">
-                                        <div class="price_love">
-                                            <span>$10 - $50</span>
-                                            <p>
-                                                <span class="lnr lnr-heart"></span> 90</p>
-                                        </div>
-                                        <div class="sell">
-                                            <p>
-                                                <span class="lnr lnr-cart"></span>
-                                                <span>16</span>
-                                            </p>
-                                        </div>
-
-                                        <div class="rating product--rating">
-                                            <ul>
-                                                <li>
-                                                    <span class="fa fa-star"></span>
-                                                </li>
-                                                <li>
-                                                    <span class="fa fa-star"></span>
-                                                </li>
-                                                <li>
-                                                    <span class="fa fa-star"></span>
-                                                </li>
-                                                <li>
-                                                    <span class="fa fa-star"></span>
-                                                </li>
-                                                <li>
-                                                    <span class="fa fa-star"></span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- end /.product-purchase -->
-                                </div>
-                            </div>
-                            <!-- end /.featured__product-description -->
-                        </div>
-                        <!--end /.featured__single-slider-->
+                       
                     </div>
                 </div>
             </div>

@@ -31,7 +31,11 @@ class HomeController extends Controller
 
         //categories
         $categories=Category::all();
-        return view('main.index',compact('goods','services','categories'));
+
+        //trenading products and services --the admin would be the one to set them , but for now, i will
+
+        $trendings=Product::orderBy('id','DESC')->limit(5)->get();
+        return view('main.index',compact('goods','services','categories','trendings'));
     }
 
 

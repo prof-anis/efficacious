@@ -36,6 +36,19 @@
     <!--================================
             START DASHBOARD AREA
     =================================-->
+
+@if(session()->has('status'))
+        <div class="alert alert-success" role="alert">
+                                <span class="alert_icon lnr lnr-checkmark-circle"></span>
+                                <strong>{{  session('status') }}</strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span class="lnr lnr-cross" aria-hidden="true"></span>
+                                </button>
+                            </div>
+@endif
+
+
+
     <section class="dashboard-area">
         <div class="dashboard_menu_area">
             <div class="container">
@@ -59,7 +72,7 @@
 
                 <div class="row">
                     <div class="col-lg-8 col-md-7">
-                        <form action="{{ route('seller.product.store') }}" method="POST">
+                        <form action="{{ route('seller.product.update',['id'=>$product->id]) }}" method="POST">
                             @csrf
                             <div class="upload_modules">
                                 <div class="modules__title">
@@ -73,8 +86,11 @@
                                         <label for="category">Product type</label>
                                         <div class="select-wrap select-wrap2">
                                             <select name="type" id="selectCategory" class="text_field"  >
-                                                <option value="goods" id="selectGoods">Goods</option>
-                                                <option value="services" id="selectServices">Services</option>
+                                                <option value="goods" id="selectGoods"  @if($product->type == 'goods') selected="true" @endif  >Goods</option>
+                                                <option value="services" id="selectServices" 
+
+                                                 @if($product->type == "services") selected="true" @endif
+                                                    >Services</option>
                                              
                                             </select>
                                             <span class="lnr lnr-chevron-down"></span>
@@ -88,7 +104,7 @@
                                         <div class="select-wrap select-wrap2">
                                             <select name="category" id="category" class="text_field">
                                                 @foreach($cats as $cat)
-                                                <option value="{{ $cat->id }}">{{$cat->name}}</option>
+                                                <option value="{{ $cat->id }}"  @if($product->category_id == $cat->id) selected="true" @endif>{{$cat->name}}</option>
                                                 
                                                 @endforeach
 
@@ -101,19 +117,19 @@
                                         <label for="product_name">Product Name
                                             <span>(Max 100 characters)</span>
                                         </label>
-                                        <input type="text" id="product_name" class="text_field" placeholder="Enter your product name here..." name="name">
+                                        <input type="text" id="product_name" class="text_field" placeholder="Enter your product name here..." name="name"  value="{{ $product->name }}">
                                     </div>
 
                                     <div class="form-group">
                                         <label>
                                             <span>Short Description</span>
                                         </label>
-                                        <textarea name="description"></textarea>
+                                        <textarea name="description" >{{$product->description}}</textarea>
                                     </div>
 
                                     <div class="form-group no-margin">
                                         <p class="label">Long Description</p>
-                                        <div id="trumbowyg-demo"></div>
+                                        <div id="trumbowyg-demo">{{ $product->long_description }}</div>
                                     </div>
                                 </div>
                                 <!-- end /.modules__content -->
@@ -243,7 +259,7 @@
                                                 <label for="rlicense">minimum price</label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon">$</span>
-                                                    <input type="text" id="rlicense" class="text_field" placeholder="00.00" name="price_start">
+                                                    <input type="text" id="rlicense" class="text_field" placeholder="00.00" name="price_start" value="{{ $product->amount }}">
                                                 </div>
                                             </div>
                                         </div>

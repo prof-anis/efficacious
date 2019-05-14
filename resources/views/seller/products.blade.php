@@ -71,7 +71,7 @@
                         <div class="product product--card">
 
                             <div class="product__thumbnail">
-                                <img src="{{$product->image_url}}" alt="Product Image">
+                               <a href="{{ route('seller.product.edit',['id'=>$product->id]) }}"> <img src="{{$product->image_url}}" alt="Product Image"> </a>
 
                                 <div class="prod_option">
                                     <a href="#" id="drop2" class="dropdown-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -99,7 +99,7 @@
                             <!-- end /.product__thumbnail -->
 
                             <div class="product-desc">
-                                <a href="#" class="product_title">
+                                <a href="{{ route('seller.product.edit',['id'=>$product->id]) }}" class="product_title">
                                     <h4>{{$product->name}}</h4>
                                 </a>
                                 <ul class="titlebtm">

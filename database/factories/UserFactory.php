@@ -90,6 +90,27 @@ $factory->define(App\Faq::class, function (Faker $faker) {
     ];
 });
 
+$factory->define(App\BlogCategory::class, function (Faker $faker) {
+   
+    return [
+       "name"=>$faker->text(5),
+
+    ];
+});
+
+$factory->define(App\Blog::class, function (Faker $faker) {
+   
+    return [
+       "title"=>$faker->text(5),
+       "body"=>$faker->paragraph(20),
+       "user_id"=>1,
+       "blog_category_id"=>1,
+       "image_url"=>"http://efficacious.test/house.jpg"
+
+    ];
+});
+
+
 
 
 
